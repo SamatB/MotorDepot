@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class Main {
     public static final GsonBuilder GSON_BUILDER = new GsonBuilder();
@@ -50,7 +51,28 @@ public class Main {
             System.out.println(driver.toString());
         }
         System.out.println("--|---------|-------|");
-        Service.changeDriver();
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Choose a truck, or press 0 to quit");
+                int truck = scanner.nextInt();
+                Service.truckInfo(trucks ,truck);
+                if (truck == 0) {
+                    System.exit(3);
+                }
+                for (Truck truck1: trucks) {
+                    if (truck1.getId() == truck) {
+                        System.out.println("N | " + "Truck         | " + "Driver| " + "Truck status |");
+                        System.out.println("--|---------------|-------|--------------|");
+                        System.out.println(truck1.getId() + " |" + truck1.getName() + " |" + truck1.getDriver().getDriverName() + "  |" + truck1.getStatus() + "  |");
+                        System.out.println("--|---------------|-------|--------------|");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public static void writeTruck(String truck) {
