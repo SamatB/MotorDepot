@@ -2,6 +2,7 @@ package com.company;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,9 +34,9 @@ public class Main {
         writeTruck(gson);
         System.out.println("  ------------Trucks information------------");
         System.out.println("# | Truck            | State        | Driver\n" +
-                            "--|------------------|--------------|---------|");
-        Truck [] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
-        for (Truck truck: trucks1) {
+                "--|------------------|--------------|---------|");
+        Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
+        for (Truck truck : trucks1) {
             System.out.println(truck.toString());
         }
 
@@ -46,8 +47,8 @@ public class Main {
         writeDriver(gsonD);
         System.out.println("# | Driver  | Truck |\n" +
                 "--|---------|-------|");
-        Driver [] drivers1 = GSON.fromJson(readDriverFile(), Driver[].class);
-        for (Driver driver: drivers1) {
+        Driver[] drivers1 = GSON.fromJson(readDriverFile(), Driver[].class);
+        for (Driver driver : drivers1) {
             System.out.println(driver.toString());
         }
         System.out.println("--|---------|-------|");
@@ -56,15 +57,16 @@ public class Main {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Choose a truck, or press 0 to quit");
                 int truck = scanner.nextInt();
-                Service.truckInfo(trucks ,truck);
+                Service.truckInfo(trucks, truck);
                 if (truck == 0) {
-                    System.exit(3);
+                    System.exit(1);
                 }
-                for (Truck truck1: trucks) {
+                for (Truck truck1 : trucks) {
                     if (truck1.getId() == truck) {
                         System.out.println("N | " + "Truck         | " + "Driver| " + "Truck status |");
                         System.out.println("--|---------------|-------|--------------|");
-                        System.out.println(truck1.getId() + " |" + truck1.getName() + " |" + truck1.getDriver().getDriverName() + "  |" + truck1.getStatus() + "  |");
+                        System.out.println(truck1.getId() + " |" + truck1.getName() + " |" +
+                                truck1.getDriver().getDriverName() + "  |" + truck1.getStatus() + "  |");
                         System.out.println("--|---------------|-------|--------------|");
                     }
                 }
@@ -85,17 +87,17 @@ public class Main {
     }
 
     public static String readTruckFile() {
-        String gson = " ";
+        StringBuilder gson = new StringBuilder(" ");
         try (FileReader reader = new FileReader(String.valueOf(WRITE_PATH))) {
             int a;
             while ((a = reader.read()) != -1) {
-                gson += (char) a;
+                gson.append((char) a);
             }
-            return gson;
+            return gson.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return gson;
+        return gson.toString();
     }
 
     public static void writeDriver(String drive) {
@@ -108,16 +110,16 @@ public class Main {
     }
 
     public static String readDriverFile() {
-        String gsonD = " ";
-        try (FileReader readerD = new FileReader(String.valueOf(WRITE_PATHD))){
+        StringBuilder gsonD = new StringBuilder(" ");
+        try (FileReader readerD = new FileReader(String.valueOf(WRITE_PATHD))) {
             int b;
             while ((b = readerD.read()) != -1) {
-                gsonD += (char) b;
+                gsonD.append((char) b);
             }
-            return gsonD;
+            return gsonD.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return gsonD;
+        return gsonD.toString();
     }
 }

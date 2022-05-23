@@ -22,7 +22,7 @@ public class Service {
                 if (truck.getId() == truckId) {
                     if (truck.getDriver().getDriverName() == null) {
                         notChosenDriver = " ";
-                    } else {
+                    } else if (truck.getDriver().getDriverName() != null) {
                         notChosenDriver = truck.getDriver().getDriverName();
                     }
                     System.out.println("Truck below is : ");
@@ -56,7 +56,12 @@ public class Service {
                             System.out.println("The driver and truck are on the base");
                         } else if (toChange == 4) {
                             truck.setStatus(Status.REPAIR);
+                        } else if (driver.getTruck() == null && truck.getStatus().equals(Status.BASE) && toChange == 1) {
+                            throw new Exception("There are no available drivers");
                         }
+                    } else if (toChange == 1 && truck.getStatus().equals(Status.ROAD) && truck.getStatus().equals(Status.REPAIR)
+                            && truck.getDriver().getDriverName().equals(driverNewName)) {
+                        throw new Exception("Drivers are not available to change");
                     } else if (toChange == 1 && truck.getStatus().equals(Status.ROAD)) {
                         throw new Exception("You can not change the driver on the road");
                     } else if (toChange == 2 && truck.getStatus().equals(Status.ROAD)) {
