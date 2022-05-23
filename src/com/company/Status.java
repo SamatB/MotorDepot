@@ -1,8 +1,8 @@
 package com.company;
 
 public enum Status {
-    BASE("On base"),
-    ROAD("On road"),
+    BASE("On base     "),
+    ROAD("On road     "),
     REPAIR("On repairing");
 
     private String def;

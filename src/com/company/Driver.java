@@ -1,12 +1,15 @@
 package com.company;
 
+
 public class Driver {
     private int driverId;
     private String driverName;
+    private String truck;
 
-    public Driver(int driverId, String driverName) {
+    public Driver(int driverId, String driverName, String truck) {
         this.driverId = driverId;
         this.driverName = driverName;
+        this.truck = truck;
     }
 
     public Driver() {
@@ -28,8 +31,16 @@ public class Driver {
         this.driverName = driverName;
     }
 
+    public String getTruck() {
+        return truck;
+    }
+
+    public void setTruck(String truck) {
+        this.truck = truck;
+    }
+
     @Override
     public String toString() {
-        return driverId + " | " + driverName + "      |";
+        return driverId + " | " + driverName + "   |" + "       |";
     }
 }

@@ -18,35 +18,39 @@ public class Main {
 
     public static void main(String[] args) {
         Truck[] trucks = {Truck.createTruck(1, "Renault Magnum", new Driver(), Status.BASE),
-                Truck.createTruck(2, "Volvo", new Driver(), Status.REPAIR),
-                Truck.createTruck(3, "DAF XT", new Driver(), Status.ROAD)
+                Truck.createTruck(2, "Volvo         ", new Driver(), Status.BASE),
+                Truck.createTruck(3, "DAF XT        ", new Driver(), Status.BASE)
         };
 
-        Driver[] drivers = {new Driver(1, "Maga"),
-                new Driver(2, "Samat"), new Driver(3, "Tilek")
+        Driver[] drivers = {new Driver(1, "Maga ", " "),
+                new Driver(2, "Samat", " "),
+                new Driver(3, "Tilek", " ")
         };
 
         String gson = GSON.toJson(trucks);
 //        System.out.println(gson);
         writeTruck(gson);
-        System.out.println("# | Truck            | State      | Driver\n" +
-                            "__|__________________|__________");
+        System.out.println("  ------------Trucks information------------");
+        System.out.println("# | Truck            | State        | Driver\n" +
+                            "--|------------------|--------------|---------|");
         Truck [] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
         for (Truck truck: trucks1) {
             System.out.println(truck.toString());
         }
 
-        System.out.println("************************");
+        System.out.println("--|------------------|--------------|---------|\n");
+        System.out.println("  ------------Drivers information------------");
 
         String gsonD = GSON.toJson(drivers);
         writeDriver(gsonD);
-        System.out.println("#   Driver    | Truck\n" +
-                "__|___________|______");
+        System.out.println("# | Driver  | Truck |\n" +
+                "--|---------|-------|");
         Driver [] drivers1 = GSON.fromJson(readDriverFile(), Driver[].class);
         for (Driver driver: drivers1) {
             System.out.println(driver.toString());
         }
-
+        System.out.println("--|---------|-------|");
+        Service.changeDriver();
     }
 
     public static void writeTruck(String truck) {

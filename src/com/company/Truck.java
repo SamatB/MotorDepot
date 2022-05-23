@@ -50,6 +50,7 @@ public class Truck {
     @Override
     public String toString() {
         return id + " | " + name + "   | " + status +
-                "    | " + driver;
+                " | " + "        | ";
     }
+
 }
