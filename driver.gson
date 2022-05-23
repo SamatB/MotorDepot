@@ -1,0 +1,17 @@
+[
+  {
+    "driverId": 1,
+    "driverName": "Maga ",
+    "truck": " "
+  },
+  {
+    "driverId": 2,
+    "driverName": "Samat",
+    "truck": " "
+  },
+  {
+    "driverId": 3,
+    "driverName": "Tilek",
+    "truck": " "
+  }
+]
